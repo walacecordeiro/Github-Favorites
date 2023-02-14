@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    font-size: 62.5%;
+    --font-primaty: 'Roboto', sans-serif;
+    --txt-color: #E1E1E6;
+
+    --hue: 195;
+    --primary-color: hsl(var(--hue),90.8%,25.5%);
+    --bg-even-table: #06181C;
+}
+
+body{
+    font-size: 1.6rem;
+    color: var(--txt-color);
+    background-color: #000000;
+}
+
+body * {
+    font-family: var(--font-primaty);
+    color: var(--txt-color);
+
+}
+
+.sr-only{
+    position: absolute;
+    width: .1rem;
+    height: .1rem;
+    padding: 0;
+    margin: -1;
+    overflow: hidden; /*O conteúdo é cortado e nenhuma barra de rolagem é exibida.*/
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+#app{
+    max-width: 112rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 8.7rem 0;
+}
+header h1{
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.search{
+    display: flex;
+    gap: .8rem;
+}
+
+.search input{
+    width: 46.2rem;
+    padding: 1.6rem;
+    background: #06181C;
+    border: none;
+    border-radius: 5px;
+}
+
+.search button{
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    text-transform: uppercase;
+    justify-content: center;
+
+    width: 17rem;
+    background-color: var(--primary-color);
+    padding: 1.6rem;
+    border: none;
+    border-radius: .5rem;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.search button:hover{
+    filter: brightness(1.1);
+    transform: scale(1.01);
+}
+
+table {
+    width: 100%;
+    font-size: 1.4rem;
+    font-size: 2rem;
+    line-height: 160%;
+    color: var(--txt-color);
+
+    border-collapse: collapse;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    outline: 1px solid var(--primary-color);
+
+    box-shadow: 0 0 25rem 0 var(--primary-color);
+}
+
+.scroll{
+    overflow: auto;
+}
+
+table th{
+    background: var(--primary-color);
+    text-align: left;
+    
+    font-weight: bold;
+    padding: 1.6rem 4rem;
+}
+
+table tr:nth-child(even){
+    background: var(--bg-even-table);
+    outline: 1px solid var(--primary-color);
+}
+
+table td{
+    padding: 1.6rem 4rem;
+    text-align: left;
+}
+
+td.user{
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+td.user img{
+    width: 5rem;
+    height: 5rem;
+
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+td.user a {
+    text-decoration: none;
+}
+
+td.user a p{
+    font-weight: bold;
+}
+
+td .remove{
+    background: none;
+    border: none;
+    color: #F75A68;
+
+    cursor: pointer;
+}
