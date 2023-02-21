@@ -4,18 +4,18 @@
     box-sizing: border-box;
 }
 
-:root{
+:root {
     font-size: 62.5%;
     --font-primaty: 'Roboto', sans-serif;
     --font-secondary: 'Roboto Mono', monospace;
     --txt-color: #E1E1E6;
 
     --hue: 195;
-    --primary-color: hsl(var(--hue),90.8%,25.5%);
-    --bg-even-table: #06181C;
+    --primary-color: hsl(var(--hue), 90.8%, 25.5%);
+    --bg-even-table: hsla(192, 65%, 11%, 1);
 }
 
-body{
+body {
     font-size: 1.6rem;
     color: var(--txt-color);
     background-color: #000000;
@@ -27,51 +27,51 @@ body * {
 
 }
 
-.sr-only{
+.sr-only {
     position: absolute;
     width: .1rem;
     height: .1rem;
     padding: 0;
     margin: -1;
-    overflow: hidden; /*O conteúdo é cortado e nenhuma barra de rolagem é exibida.*/
-    clip: rect(0,0,0,0);
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
 }
 
-#app{
+#app {
     max-width: 112rem;
     width: 90%;
     margin: 0 auto;
 }
 
-header{
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     margin: 8.7rem 0;
 }
-header h1{
+
+header h1 {
     font-size: 2rem;
     text-transform: uppercase;
 }
 
-.search{
+.search {
     display: flex;
     gap: .8rem;
 }
 
-.search input{
-    width: clamp( 10rem, 3vw, 46.2rem);
+.search input {
+    width: clamp(10rem, 52vw, 30.2rem);
     padding: 1.6rem;
-    background: #06181C;
+    background: var(--bg-even-table);
     border: none;
-    border: 1px solid red;
     border-radius: 5px;
 }
 
-.search button{
+.search button {
     display: flex;
     gap: .8rem;
     align-items: center;
@@ -88,7 +88,7 @@ header h1{
     transition: .2s;
 }
 
-.search button:hover{
+.search button:hover {
     filter: brightness(1.1);
     transform: scale(1.01);
 }
@@ -108,33 +108,31 @@ table {
     box-shadow: 0 0 25rem 0 var(--primary-color);
 }
 
-.scroll{
+.scroll {
     overflow: auto;
 }
 
-table th{
-    background: var(--primary-color);
-    text-align: left;
-    
-    font-weight: bold;
+table td,
+th {
     padding: 1.6rem 4rem;
+    text-align: left;
 }
 
-table tr:nth-child(even){
+table th {
+    background: var(--primary-color);
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
     background: var(--bg-even-table);
     outline: 1px solid var(--primary-color);
 }
 
-table td{
-    padding: 1.6rem 4rem;
-    text-align: left;
-}
-
-td.noUser{
+td.noUser {
     text-align: center;
 }
 
-td.noUser .displayTd{
+td.noUser .displayTd {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,20 +141,21 @@ td.noUser .displayTd{
     height: 62rem;
 }
 
-.displayTd span{
+.displayTd span {
     font-size: 4rem;
+    line-height: 4.5rem;
     font-family: var(--font-secondary);
     font-weight: 700;
     color: #4E5455;
 }
 
-td.user{
+td.user {
     display: flex;
     align-items: center;
     gap: 1.6rem;
 }
 
-td.user img{
+td.user img {
     width: 5rem;
     height: 5rem;
 
@@ -168,11 +167,11 @@ td.user a {
     text-decoration: none;
 }
 
-td.user a p{
+td.user a p {
     font-weight: bold;
 }
 
-td .remove{
+td .remove {
     background: none;
     border: none;
     color: #F75A68;
@@ -182,24 +181,46 @@ td .remove{
     transition: 0.2s;
 }
 
-td .remove:hover{
+td .remove:hover {
     transform: scale(1.1);
 }
 
 @media (max-width: 47.938em) {
-    input {
-      max-width: none;
+
+    header {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
     }
-    table {
-      max-width: 100%;
+
+    .search button{
+        width: fit-content;
+    }
+
+    thead {
+        display: none;
+    }
+
+    table th,
+    td {
+        width: 100%;
+        display: block;
+    }
+
+    table th {
+        text-align: center;
+    }
+
+    .noUser {
+        background-color: transparent;
+    }
+
+    td.noUser .displayTd {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: fit-content;
+        padding: 5rem 0;
     }
 }
-
-@media only screen and (max-width: 600px) {
-    .scrollable-table {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        white-space: nowrap;
-      }
-  }
-  
