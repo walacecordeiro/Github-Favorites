@@ -63,10 +63,11 @@ header h1{
 }
 
 .search input{
-    width: 46.2rem;
+    width: clamp( 10rem, 3vw, 46.2rem);
     padding: 1.6rem;
     background: #06181C;
     border: none;
+    border: 1px solid red;
     border-radius: 5px;
 }
 
@@ -105,8 +106,6 @@ table {
     outline: 1px solid var(--primary-color);
 
     box-shadow: 0 0 25rem 0 var(--primary-color);
-    outline: 1px solid red;
-    margin: 0 auto;
 }
 
 .scroll{
@@ -194,4 +193,13 @@ td .remove:hover{
     table {
       max-width: 100%;
     }
+}
+
+@media only screen and (max-width: 600px) {
+    .scrollable-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+      }
   }
+  
