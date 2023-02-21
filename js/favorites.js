@@ -10,7 +10,7 @@ export class Favorites {
         this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
     }
 
-    save(){
+    save() {
         localStorage.setItem('@github-favorites:', JSON.stringify(this.entries))
     }
 
@@ -19,13 +19,13 @@ export class Favorites {
 
             const userExists = this.entries.find(entry => entry.login === username)
 
-            if(userExists) {
+            if (userExists) {
                 throw new Error('Usuário já cadastrado')
             }
 
             const user = await GithubUser.search(username)
 
-            if(user.login === undefined){
+            if (user.login === undefined) {
                 throw new Error('Usuário não encontrado!')
             }
 
@@ -70,27 +70,50 @@ export class FavoritesView extends Favorites {
     update() {
         this.removeAllTr()
 
-        this.entries.forEach(user => {
-            const row = this.createRow()
-
-            row.querySelector('.user img').src = `https://github.com/${user.login}.png`
-            row.querySelector('.user img').alt = `Imagem de ${user.name}`
-            row.querySelector('.user a').href = `https://github.com/${user.login}`
-            row.querySelector('.user p').textContent = user.name
-            row.querySelector('.user span').textContent = user.login
-            row.querySelector('.repositories').textContent = user.public_repos
-            row.querySelector('.followers').textContent = user.followers
-
-            row.querySelector('.remove').onclick = () => {
-                const isOk = confirm('Tem certeza que deseja deletar essa linha?')
-
-                if (isOk) {
-                    this.delete(user)
-                }
-            }
-
+        if (this.entries.length === 0) {
+            const row = this.tableWithoutUser()
             this.tbody.append(row)
-        })
+        } else {
+
+            this.entries.forEach(user => {
+                const row = this.createRow()
+
+                row.querySelector('.user img').src = `https://github.com/${user.login}.png`
+                row.querySelector('.user img').alt = `Imagem de ${user.name}`
+                row.querySelector('.user a').href = `https://github.com/${user.login}`
+                row.querySelector('.user p').textContent = user.name
+                row.querySelector('.user span').textContent = user.login
+                row.querySelector('.repositories').textContent = user.public_repos
+                row.querySelector('.followers').textContent = user.followers
+
+                row.querySelector('.remove').onclick = () => {
+                    const isOk = confirm('Tem certeza que deseja deletar essa linha?')
+
+                    if (isOk) {
+                        this.delete(user)
+                    }
+                }
+
+
+
+                this.tbody.append(row)
+            })
+        }
+    }
+
+    tableWithoutUser() {
+        const staticTr = document.createElement('tr')
+
+        staticTr.innerHTML = `
+        <td class="noUser" colspan="4">
+            <div class="displayTd">
+                <img src="./assets/starNoUser.svg" alt="Estrelinha fazendo cara de triste" />
+                <span>Nenhum favorito ainda</span>
+            </div>
+        </td>
+        
+        `
+        return staticTr
     }
 
     createRow() {
