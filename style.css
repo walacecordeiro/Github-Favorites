@@ -27,6 +27,10 @@ body * {
 
 }
 
+.hide{
+    display: none;
+}
+
 .sr-only {
     position: absolute;
     width: .1rem;
@@ -42,7 +46,7 @@ body * {
 #app {
     max-width: 112rem;
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 8.7rem;
 }
 
 header {
@@ -187,6 +191,11 @@ td .remove:hover {
 
 @media (max-width: 47.938em) {
 
+    .hide{
+        display: block;
+        padding-top: 2rem;
+    }
+
     header {
         display: flex;
         flex-direction: column;
@@ -194,7 +203,7 @@ td .remove:hover {
         align-items: center;
     }
 
-    .search button{
+    .search button {
         width: fit-content;
     }
 
@@ -202,14 +211,30 @@ td .remove:hover {
         display: none;
     }
 
-    table th,
-    td {
+    table tr {
+        display: flex;
+        flex-direction: column;
+        /* gap: 1rem; */
+        padding: 4rem;
+    }
+
+    table td,
+    th {
         width: 100%;
-        display: block;
+        display: flex;
+        padding: 0;
     }
 
     table th {
         text-align: center;
+    }
+
+    td .remove {
+        width: 50%;
+        border: 1px solid #F75A68;
+        border-radius: .4rem;
+        padding: 1rem 0;
+        margin: 2rem auto 0;
     }
 
     .noUser {
